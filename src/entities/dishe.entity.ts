@@ -1,5 +1,4 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { DishType } from './dish-type.entity';
 
 @Entity()
 export class Dish {
@@ -12,6 +11,6 @@ export class Dish {
   @Column()
   price: number;
 
-  @ManyToOne((type) => DishType, (dishType) => dishType.dishes)
-  dish_type: DishType;
+  @Column()
+  dish_type: string;
 }

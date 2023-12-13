@@ -3,9 +3,9 @@ import { OrdersModule } from './orders/orders.module';
 import { OrdersController } from './orders/orders.controller';
 import { OrdersService } from './orders/orders.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DishType } from './entities/dish-type.entity';
 import { Dish } from './entities/dishe.entity';
 import { Order } from './entities/order.entity';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
   imports: [
@@ -17,9 +17,10 @@ import { Order } from './entities/order.entity';
       database: 'test',
       username: 'root',
       password: 'admin',
-      entities: [DishType, Dish, Order],
+      entities: [Dish, Order],
       synchronize: true,
     }),
+    MenuModule,
   ],
   controllers: [OrdersController],
   providers: [OrdersService],
