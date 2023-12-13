@@ -12,6 +12,6 @@ export class Dish {
   @Column()
   price: number;
 
-  @Column()
+  @ManyToOne((type) => DishType, (dishType) => dishType.dishes)
   dish_type: DishType;
 }

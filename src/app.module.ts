@@ -4,6 +4,8 @@ import { OrdersController } from './orders/orders.controller';
 import { OrdersService } from './orders/orders.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DishType } from './entities/dish-type.entity';
+import { Dish } from './entities/dishe.entity';
+import { Order } from './entities/order.entity';
 
 @Module({
   imports: [
@@ -12,9 +14,10 @@ import { DishType } from './entities/dish-type.entity';
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: 'admin',
+      database: 'test',
+      username: 'root',
       password: 'admin',
-      entities: [DishType],
+      entities: [DishType, Dish, Order],
       synchronize: true,
     }),
   ],
