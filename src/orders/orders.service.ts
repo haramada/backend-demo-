@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from '../entities/order.entity';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { PlaceOrderDto } from './dtos/place-order.dto';
 import { InvalidOrderException } from '../common/exceptions/invalid-order.exception';
 import { Dish } from '../entities/dishe.entity';
@@ -21,7 +21,9 @@ export class OrdersService {
 
     //check whether there is atleast 1 side dish included
     if (sideDishes.length === 0)
-      throw new InvalidOrderException('atleast one side should be ordered');
+      throw new InvalidOrderException(
+        'atleast one side dish should be ordered',
+      );
 
     //verify the recieved dish data with the persisted data
     const mainDishIds = mainDishes.map((item) => item.id);
@@ -29,8 +31,11 @@ export class OrdersService {
       mainDishIds,
       DishTypeConstants.MAIN_DISHES,
     );
+
     if (mainDishIds.length !== result.length)
       throw new InvalidOrderException('invalid main dish ids found');
+
+    let orderDishes = result;
 
     const sideDishIds = sideDishes.map((item) => item.id);
     result = await this.checkDishIdsByType(
@@ -41,6 +46,8 @@ export class OrdersService {
     if (sideDishIds.length !== result.length)
       throw new InvalidOrderException('invalid side dish ids found');
 
+    orderDishes = orderDishes.concat(result);
+
     let dessertIds: number[] = [];
     if (desserts) {
       dessertIds = desserts.map((item) => item.id);
@@ -50,15 +57,22 @@ export class OrdersService {
       );
       if (dessertIds.length !== result.length)
         throw new InvalidOrderException('invlaid dessert dish ids found');
+
+      orderDishes = orderDishes.concat(result);
     }
 
-    //for performance reason we can directly retrive the computed some for the price
+    //for performance reason we can directly retrive the computed sum for the price
     let ids = mainDishIds.concat(sideDishIds).concat(dessertIds);
 
     const totalPrice = await this.getComputedTotal(ids);
 
+    let order: Partial<Order> = {
+      totalPrice,
+      dishes: orderDishes,
+    };
+
     //final bill computation is done, proceed to create the record
-    this.orderRepository.insert({ totalPrice });
+    await this.orderRepository.save(order);
   }
 
   private async checkDishIdsByType(

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Dish } from './entities/dishe.entity';
 import { Order } from './entities/order.entity';
 import { MenuModule } from './menu/menu.module';
+import { ReportsModule } from './reports/reports.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MenuModule } from './menu/menu.module';
       synchronize: true,
     }),
     MenuModule,
+    ReportsModule,
   ],
   controllers: [],
   providers: [],

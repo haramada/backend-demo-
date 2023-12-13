@@ -1,4 +1,12 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Order } from './order.entity';
 
 @Entity()
 export class Dish {
@@ -13,4 +21,8 @@ export class Dish {
 
   @Column({ name: 'dish_type' })
   dishType: string;
+
+  @ManyToMany(() => Order)
+  @JoinTable({ name: 'dish_orders' })
+  orders: Order[];
 }

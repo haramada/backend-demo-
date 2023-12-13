@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
@@ -12,7 +13,7 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('datetime', { default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   orderDate: Date;
 
   @Column()
