@@ -6,6 +6,11 @@ import { DishTypeConstants } from '../common/dish-types';
 
 @Injectable()
 export class MenuService {
+  private menuConfig = {
+    minNumMainDishes: 1,
+    mindNumSideDishes: 1,
+  };
+
   constructor(
     @InjectRepository(Dish) private dishRepository: Repository<Dish>,
   ) {}
@@ -14,6 +19,10 @@ export class MenuService {
     return this.dishRepository.find();
   }
   getDishesByType(dishType: DishTypeConstants) {
-    return this.dishRepository.find({ where: { dish_type: dishType } });
+    return this.dishRepository.find({ where: { dishType: dishType } });
+  }
+
+  getMenuConfigRequirements() {
+    return this.menuConfig;
   }
 }

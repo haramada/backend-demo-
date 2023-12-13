@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Query,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Get, Param, Query, ValidationPipe } from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { Dish } from '../entities/dishe.entity';
 import { DishQueryDto } from './dtos/dish-query.dto';
@@ -19,7 +12,7 @@ export class MenuController {
   @Get('/dishes')
   async getDishes(
     @Query(new ValidationPipe())
-    dishQueryDto: DishQueryDto,
+    dishQueryDto: DishQueryDto, //validation of the dishtype query param
   ) {
     let dishes: Dish[];
 
@@ -28,9 +21,13 @@ export class MenuController {
       dishes = await this.menuService.getDishesByType(dishQueryDto.type);
     } else {
       dishes = await this.menuService.getAllDishes();
-      console.log(dishes);
     }
 
     return dishes;
+  }
+
+  @Get('/config')
+  getMenuConfigRequirements() {
+    return this.menuService.getMenuConfigRequirements();
   }
 }

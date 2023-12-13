@@ -5,12 +5,12 @@ export class Dish {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  dish_name: string;
+  @Column({ name: 'dish_name' })
+  dishName: string;
 
   @Column()
   price: number;
 
-  @Column()
-  dish_type: string;
+  @Column({ name: 'dish_type' })
+  dishType: string;
 }

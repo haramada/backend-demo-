@@ -1,10 +1,4 @@
-import {
-  IsEnum,
-  IsNumber,
-  IsOptional,
-  IsString,
-  isString,
-} from 'class-validator';
+import { IsEnum, IsOptional } from 'class-validator';
 import { DishTypeConstants } from '../../common/dish-types';
 
 export class DishQueryDto {

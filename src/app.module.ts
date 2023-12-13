@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { OrdersModule } from './orders/orders.module';
-import { OrdersController } from './orders/orders.controller';
-import { OrdersService } from './orders/orders.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Dish } from './entities/dishe.entity';
 import { Order } from './entities/order.entity';
@@ -22,7 +20,7 @@ import { MenuModule } from './menu/menu.module';
     }),
     MenuModule,
   ],
-  controllers: [OrdersController],
-  providers: [OrdersService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

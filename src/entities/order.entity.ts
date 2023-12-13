@@ -15,6 +15,9 @@ export class Order {
   @Column('datetime', { default: () => 'CURRENT_TIMESTAMP' })
   orderDate: Date;
 
+  @Column()
+  totalPrice: number;
+
   @ManyToMany(() => Dish)
   @JoinTable({ name: 'dish_orders' })
   dishes: Dish[];
