@@ -1,0 +1,153 @@
+{
+    "info": {
+        "_postman_id": "a971888d-a8d3-4b4c-95e8-4e7643eb59b8",
+        "name": "restaurant",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "menu",
+            "item": [
+                {
+                    "name": "get-all-dishes",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/menu/dishes?type=main",
+                            "query": [
+                                {
+                                    "key": "type",
+                                    "value": "main"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "menu",
+                                "dishes"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                },
+                {
+                    "name": "get-menu-config",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/menu/config",
+                            "query": [
+                                {
+                                    "key": "type",
+                                    "value": "main",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "menu",
+                                "config"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "order",
+            "item": [
+                {
+                    "name": "place-order",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:3000/orders",
+                            "query": [
+                                {
+                                    "key": "type",
+                                    "value": "main",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "orders"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"mainDishes\" : [ {\"id\" : 8},{\"id\" : 9} ],\n  \"sideDishes\" :[{\"id\" : 12}]\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "reports",
+            "item": [
+                {
+                    "name": "daily-revenue",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/reports/daily-revenue",
+                            "path": [
+                                "reports",
+                                "daily-revenue"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                },
+                {
+                    "name": "famous-dish",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/reports/famous-dish?type=main",
+                            "query": [
+                                {
+                                    "key": "type",
+                                    "value": "main"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "reports",
+                                "famous-dish"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
