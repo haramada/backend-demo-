@@ -5,6 +5,7 @@ import { Dish } from './entities/dishe.entity';
 import { Order } from './entities/order.entity';
 import { MenuModule } from './menu/menu.module';
 import { ReportsModule } from './reports/reports.module';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -21,8 +22,10 @@ import { ReportsModule } from './reports/reports.module';
     }),
     MenuModule,
     ReportsModule,
+
+    TypeOrmModule.forFeature([Dish]),
   ],
   controllers: [],
-  providers: [],
+  providers: [AppService],
 })
 export class AppModule {}
