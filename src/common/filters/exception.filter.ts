@@ -1,3 +1,7 @@
+/**
+ * Exception filter to catch all HTTP related exceptions
+ * and re arrange the response in a unified manner
+ */
 import {
   ArgumentsHost,
   Catch,
